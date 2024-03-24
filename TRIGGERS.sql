@@ -43,7 +43,8 @@ SET NEW.salary =  (NEW.hourly_pay * 2080);
 --insert values for new employees
 
 INSERT INTO employees
-VALUES (6, "Sheldon", "Plankton", 10, NULL, "janitor", "2023-01-07");
+VALUES (6, "Sheldon", "Plankton", 10, 
+	NULL, "janitor", "2023-01-07");
 SELECT * FROM employees; 
 
 --another example
@@ -55,10 +56,11 @@ CREATE TABLE expenses (
 SELECT * FROM expenses; 
 INSERT INTO expenses
 VALUES  (1,"salaries", 0),
-	    (2,"supplies", 0 ), 
+	(2,"supplies", 0 ), 
         (3,"taxes", 0 ); 
 SELECT * FROM expenses; 
---lets calculate total expenses for salaries along with table employees
+/*lets calculate total expenses 
+for salaries along with table employees*/
 UPDATE expenses
 SET expense_total = (SELECT SUM(salary) FROM employees)
 WHERE expense_name = "salaries";
@@ -87,7 +89,8 @@ WHERE expense_name = "salaries";
 
 --lets test it  out
 INSERT INTO employees
-VALUES (6, "Sheldon" , "Plankton", 10, NULL, "janitor", "2023-01-07");
+VALUES (6, "Sheldon" , "Plankton", 10, 
+	NULL, "janitor", "2023-01-07");
 SELECT * FROM expenses;
 --another example
 CREATE TRIGGER after_salary_update
